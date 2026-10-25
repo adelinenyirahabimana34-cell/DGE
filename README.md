@@ -169,6 +169,47 @@ Metro will compile the JavaScript bundle and launch the app in your active Andro
 
 ---
 
+## ☁️ Deploying the Backend on Render
+
+You can host the Express REST API for free on [Render](https://render.com):
+
+### Option A: Using Render Blueprint (Automatic 1-Click)
+1. Go to your [Render Dashboard](https://dashboard.render.com/) and click **"New +"** → **"Blueprint"**.
+2. Connect your GitHub repository: `adelinenyirahabimana34-cell/DGE`.
+3. Render will automatically detect the [`render.yaml`](file:///c:/Users/user/Desktop/DGECommerce/render.yaml) file.
+4. When prompted for environment variables, fill in:
+   - `DATABASE_URL`: `postgresql://neondb_owner:npg_iGRo86zxKFbc@ep-nameless-sunset-b4acvha3-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
+   - `JWT_SECRET`: `dg_ecommerce_secret_key_2026_rwamagana`
+5. Click **"Apply"**. Render will install dependencies and start the service.
+
+### Option B: Manual Web Service Setup
+1. On Render, click **"New +"** → **"Web Service"**.
+2. Select your GitHub repository: `adelinenyirahabimana34-cell/DGE`.
+3. Configure the service settings:
+   - **Name**: `dgecommerce-api`
+   - **Region**: Frankfurt / Oregon / Ohio
+   - **Branch**: `main`
+   - **Root Directory**: `server`
+   - **Runtime**: `Node`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+   - **Instance Type**: `Free`
+4. Under **Environment Variables**, add:
+   - `NODE_ENV` = `production`
+   - `DATABASE_URL` = `postgresql://neondb_owner:npg_iGRo86zxKFbc@ep-nameless-sunset-b4acvha3-pooler.c-6.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require`
+   - `JWT_SECRET` = `dg_ecommerce_secret_key_2026_rwamagana`
+5. Click **"Create Web Service"**.
+
+### Connecting the React Native Mobile App to Render
+Once deployed, Render will assign your API a public HTTPS URL (e.g. `https://dgecommerce-api.onrender.com`).
+Update line 5 in `src/constants/index.ts`:
+```typescript
+export const API_BASE_URL = 'https://dgecommerce-api.onrender.com/api';
+```
+Now the mobile app can connect to the backend from any physical phone anywhere in the world!
+
+---
+
 ## 🧪 Testing & Validation
 
 The codebase has undergone comprehensive verification:

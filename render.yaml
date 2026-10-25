@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: dgecommerce-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        value: dg_ecommerce_secret_key_2026_rwamagana
+      - key: DATABASE_URL
+        sync: false
