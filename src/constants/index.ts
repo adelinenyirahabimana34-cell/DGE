@@ -1,7 +1,8 @@
-// API base URL — change to your computer's local IP when testing on a physical device
-// For Android emulator use: http://10.0.2.2:5000/api
-// For iOS simulator use: http://localhost:5000/api
-// For physical device: http://<YOUR_LAN_IP>:5000/api
+// API base URL:
+// For Render production deployment: https://dgecommerce-api.onrender.com/api
+// For Android emulator (local dev): http://10.0.2.2:5000/api
+// For iOS simulator (local dev): http://localhost:5000/api
+// For physical device on same Wi-Fi: http://<YOUR_LAN_IP>:5000/api
 export const API_BASE_URL = 'http://10.0.2.2:5000/api';
 
 // App-wide color palette — D&G brand: dark green, white, light grey

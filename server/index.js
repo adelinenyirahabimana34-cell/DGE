@@ -1,9 +1,12 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const cors = require('cors');
 
 const app = express();
+// On Render, PORT is provided by environment (default 10000). Locally loaded from .env (5000).
 const PORT = process.env.PORT || 10000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 // Middleware
 app.use(cors());
@@ -18,7 +21,8 @@ app.get('/', (req, res) => {
     version: '1.0.0',
     store: 'D&G Retail Store, Rwamagana, Rwanda',
     endpoints: {
-      health: '/api/health',
+      health: '/health',
+      apiHealth: '/api/health',
       products: '/api/products',
       categories: '/api/products/categories',
       auth: '/api/auth',
@@ -28,8 +32,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// Health check
-app.get('/api/health', (req, res) => {
+// Health check (supports both /health matching Render Blueprint and /api/health)
+app.get(['/health', '/api/health'], (req, res) => {
   res.json({ status: 'ok', message: 'D&G E-Commerce API is running', timestamp: new Date().toISOString() });
 });
 
@@ -53,7 +57,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`D&G E-Commerce API listening on port ${PORT} (0.0.0.0)`);
-  console.log(`Health check ready at /api/health`);
+app.listen(PORT, HOST, () => {
+  console.log(`D&G E-Commerce API listening on ${HOST}:${PORT}`);
+  console.log(`Health check ready at /health and /api/health`);
 });
