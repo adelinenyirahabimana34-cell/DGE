@@ -1,0 +1,2 @@
+D&G E-Commerce API listening on http://localhost:5000
+Health check: http://localhost:5000/api/health
