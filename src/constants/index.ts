@@ -1,9 +1,9 @@
-// API base URL:
-// For Render production deployment: https://dgecommerce-api.onrender.com/api
-// For Android emulator (local dev): http://10.0.2.2:5000/api
-// For iOS simulator (local dev): http://localhost:5000/api
-// For physical device on same Wi-Fi: http://<YOUR_LAN_IP>:5000/api
-export const API_BASE_URL = 'http://10.0.2.2:5000/api';
+// API base URLs:
+// Primary default: Live Render Production Server (Connected to Neon DB)
+export const RENDER_API_URL = 'https://dgecommerce-api.onrender.com/api';
+export const LAN_API_URL = 'http://172.23.189.232:5000/api';
+export const EMULATOR_API_URL = 'http://10.0.2.2:5000/api';
+export const API_BASE_URL = RENDER_API_URL;
 
 // App-wide color palette — D&G brand: dark green, white, light grey
 export const Colors = {
